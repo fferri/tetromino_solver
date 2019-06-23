@@ -1,4 +1,5 @@
 from tetromino import *
+import random
 
 class Board:
     def __init__(self, width, height, content=None, occupancy=None):
@@ -60,7 +61,10 @@ def solve(b, population):
         b.dump()
         print('-' * 30)
 
-        for p0, count in population.items():
+        pkeys = list(population.keys())
+        random.shuffle(pkeys)
+        for p0 in pkeys:
+            count = population[p0]
             if count == 0: continue
             population1 = population.copy()
             population1[p0] -= 1
